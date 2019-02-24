@@ -25,6 +25,13 @@ namespace DemoCore.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddCors(corsSetup =>
+            {
+                corsSetup.AddPolicy("AllowAll", bldr =>
+                {
+                    bldr.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
+                });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -35,6 +42,7 @@ namespace DemoCore.Api
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseCors("AllowAll");
             app.UseMvc();
         }
     }
