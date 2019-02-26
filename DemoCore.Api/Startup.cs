@@ -44,6 +44,8 @@ namespace DemoCore.Api
 
             app.UseCors("AllowAll");
             app.UseMvc();
+            app.UseDefaultFiles();
+            app.UseStaticFiles();
         }
     }
 }
